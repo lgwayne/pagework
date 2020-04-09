@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>前端考核页面</title>
+    <link rel="stylesheet" href="css/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="flexible" content="initial-dpr=2"/>
+    <script src="js/jquery-1.7.2.js"></script>
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="app-main">
+    <div class="header">
+        <div class="header-line">
+
+        </div>
+    </div>
+    <div class="banner ">
+        <div class="banner-img container-fluid mycontainer">
+            <img src="images/merryC.png">
+        </div>
+        <div class="banner-text container-fluid mycontainer">
+            <div class="text-content">
+                <div class="block block-first">
+                    <div class="img-div"><img class="pic" src="images/kaimen.png"></div>
+                    <div class="span-div"><span class="block-span">开门</span></div>
+                </div>
+                <div class="block block-middle">
+                    <div class="img-div"><img class="pic" src="images/jiaofei.png"></div>
+                    <div class="span-div"><span class="block-span">缴费</span></div>
+                </div>
+                <div class="block block-middle">
+                    <div class="img-div"><img class="pic" src="images/baoxiu.png"></div>
+
+                    <div class="span-div"><span class="block-span">报修</span></div>
+                </div>
+                <div class="block block-middle">
+                    <div class="img-div"><img class="pic" src="images/tousu.png"></div>
+                    <div class="span-div"><span class="block-span">投诉</span></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="main-content  mycontainer">
+        <div class="content-head">
+            <div class="content-title"><span class="content-title">热门资讯</span></div>
+        </div>
+        <div class="content-body">
+            <ul class="news" id="newsList">
+                <!--<li>-->
+                    <!--<div>-->
+                        <!--<div class="left">-->
+                            <!--<div class="h3">39湖北新增病例出现两连降，10天来首次降至2000以下！</div>-->
+                            <!--<div class="left-author"><span>环球网官方帐号</span></div>-->
+                            <!--<div class="bottom-text"><span class="time-text">01-12 08:39</span>-->
+                                <!--<span class="status-text">已读</span>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="right">-->
+                            <!--<img src="images/test.png">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</li>-->
+            </ul>
+        </div>
+    </div>
+    <div class="footer"></div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $.ajax({
+            type: "GET",
+            url: "data.json",
+            dataType: "json",
+            success: function (data) {
+                $.each(data.result,function (i,n) {
+                    $("#newsList").append("<li>\n" +
+                        "                    <div>\n" +
+                        "                        <div class=\"left\">\n" +
+                        "                            <div class=\"h3\">"+n.title+"</div>\n" +
+                        "                            <div class=\"left-author\"><span>"+n.author+"</span></div>\n" +
+                        "                            <div class=\"bottom-text\"><span class=\"time-text\">"+n.time+"</span>\n" +
+                        "                                <span class=\"status-text\">"+n.status_DISPLAY+"</span>\n" +
+                        "                            </div>\n" +
+                        "                        </div>\n" +
+                        "                        <div class='right'><img src='"+n.img+"'>\n" +
+                        "                        </div>\n" +
+                        "                    </div>\n" +
+                        "                </li>")
+                });
+                console.log(data.result);
+            }
+        });
+    });
+</script>
+
+<script src="js/handlebars-v4.7.6.js"></script>
+</body>
+</html>
